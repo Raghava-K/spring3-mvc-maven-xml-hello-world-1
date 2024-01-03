@@ -3,7 +3,7 @@ pipeline {
     agent any
  
     parameters {
-    gitParameter branchFilter: 'origin/(.*)', defaultValue: 'origin/master', name: 'master'
+    booleanParam branchFilter: 'origin/(.*)', defaultValue: 'origin/master',
          
         booleanParam(defaultValue: false, description: '', name: 'mvn_build')
         booleanParam(defaultValue: false, description: '', name: 'publish_to_nexus')

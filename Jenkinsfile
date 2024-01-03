@@ -13,9 +13,9 @@ pipeline {
         // Where your Nexus is running
         NEXUS_URL = "http://47.128.76.190:8081"
         // Repository where we will upload the artifact
-        NEXUS_REPOSITORY = "devops"
+        NEXUS_REPOSITORY = "D-pipeline"
         // Jenkins credential id to authenticate to Nexus OSS
-        NEXUS_CREDENTIAL_ID = "admin"
+        NEXUS_CREDENTIAL_ID = "nexus-server"
     }
     stages {
         stage("clone code") {

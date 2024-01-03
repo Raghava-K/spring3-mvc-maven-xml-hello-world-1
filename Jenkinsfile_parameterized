@@ -3,7 +3,7 @@ pipeline {
     agent any
  
     parameters {
-    gitParameter branchFilter: 'origin/(.*)', defaultValue: 'origin/master', name: 'BRANCH', type: 'PT_BRANCH'
+    gitParameter branchFilter: 'origin/(.*)', defaultValue: 'origin/master', name: 'master'
          
         booleanParam(defaultValue: false, description: '', name: 'mvn_build')
         booleanParam(defaultValue: false, description: '', name: 'publish_to_nexus')
@@ -32,7 +32,7 @@ pipeline {
                 script {
                     
 				    // Let's clone the source
-                    git branch: "${params.BRANCH}", url: 'https://github.com/betawins/parametirize-job.git';
+                    git branch: "${params.BRANCH}", url: 'https://github.com/Raghava-K/spring3-mvc-maven-xml-hello-world-1.git';
                    
                 } 
             }

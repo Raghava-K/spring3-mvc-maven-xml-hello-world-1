@@ -1,16 +1,12 @@
 pipeline {
- 
     agent any
     parameters {
-         
         booleanParam(defaultValue: false, description: '', name: 'mvn_build')
         booleanParam(defaultValue: false, description: '', name: 'publish_to_nexus')
-  
     }
     tools {
-        // Note: this should match with the tool name configured in your jenkins instance (JENKINS_URL/configureTools/)
-        maven "MVN_HOME"
-        
+        // Note: 'maven' is the tool type, and 'MVN_HOME' is the tool name configured in Jenkins
+        maven 'MVN_HOME'
     }
     environment {
         // This can be nexus3 or nexus2
@@ -20,7 +16,7 @@ pipeline {
         // Where your Nexus is running
         NEXUS_URL = "47.128.76.190:8081"
         // Repository where we will upload the artifact
-        NEXUS_REPOSITORY = "D-pipeline"
+        NEXUS_REPOSITORY = "parajob-s"
         // Jenkins credential id to authenticate to Nexus OSS
         NEXUS_CREDENTIAL_ID = "nexus-server"
     }
@@ -28,11 +24,9 @@ pipeline {
         stage("clone code") {
             steps {
                 script {
-                    
 				    // Let's clone the source
                     git branch: "master", url: 'https://github.com/betawins/spring3-mvc-maven-xml-hello-world-1.git';
-                   
-                } 
+                }
             }
         }
         stage("mvn build") {
@@ -41,7 +35,7 @@ pipeline {
 				if (params.mvn_build) {
                     // If you are using Windows then you should use "bat" step
                     // Since unit testing is out of the scope we skip them
-                    sh '$MVN_HOME/bin/mvn -Dmaven.test.failure.ignore clean package'
+                    sh '/opt/maven/bin/mvn -Dmaven.test.failure.ignore clean package'
 					} else {
                                 echo "no build"
                             }
